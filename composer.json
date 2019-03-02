@@ -1,0 +1,16 @@
+{
+    "name": "rain_sunshine_cloud/request",
+    "description": "这是一起请求接收参数类",
+    "authors": [
+        {
+            "name": "RainSunshineCloud",
+            "email": "931035553@qq.com"
+        }
+    ],
+    "require": {},
+    "autoload":{
+        "psr-4":{
+            "RainSunshineCloud\\" : "src/"
+        }
+    }
+}
