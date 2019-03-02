@@ -188,7 +188,7 @@ class Request
 
 				switch ($methods['type']) {
 					case 1:
-						$data[$params_name] = call_user_func($method['check_method'],$data[$params_name],$methods['error_message'],$methods['other_params']);
+						$data[$params_name] = call_user_func($methods['check_method'],$data[$params_name],$methods['error_message'],$methods['other_params']);
 						break;
 					case 2:
 						$data[$params_name] = call_user_func([$this->validate,$methods['check_method']],$data[$params_name],$methods['error_message'],$methods['other_params']);
@@ -258,10 +258,10 @@ class Request
 
 		if (is_array($method)) {
 			return 1;
-		} else if (method_exists('RainSunshineCloud\Validate',$method)) {
+		} else if (is_string($method) && method_exists('RainSunshineCloud\Validate',$method)) {
 			$this->instanceValidate();
 			return 2;
-		} else if ($method instanceof Closure) {
+		} else if (is_object($method) && $method instanceof \Closure) {
 			return 4;
 		} else {
 			throw new RequestException('不支持该类型的验证方法',100);
