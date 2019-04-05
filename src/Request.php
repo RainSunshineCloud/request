@@ -5,7 +5,7 @@ class Request
 {
 	protected $validate_func = [];
 	protected $validate = null;
-	protected $data_type = 1;
+	protected static $data_type = 1;
 	protected static $self = null;
 
 	/**
@@ -39,7 +39,7 @@ class Request
 		$method = $this->serv('REQUEST_METHOD');
 		$data = [];
 		if ($method['REQUEST_METHOD'] == 'PUT') {
-			switch ($this->data_type) {
+			switch (self::$data_type) {
 				case 1://原生
 					parse_str(file_get_contents('php://input'), $data);
 					break;
@@ -62,7 +62,7 @@ class Request
 		$method = $this->serv('REQUEST_METHOD');
 		$data = [];
 		if ($method['REQUEST_METHOD'] == 'DELETE') {
-			switch ($this->data_type) {
+			switch (self::$data_type) {
 				case 1://原生
 					parse_str(file_get_contents('php://input'), $data);
 					break;
@@ -87,7 +87,7 @@ class Request
 
 		if ($method['REQUEST_METHOD'] == 'PATCH') {
 
-			switch ($this->data_type) {
+			switch (self::$data_type) {
 				case 1://原生
 					parse_str(file_get_contents('php://input'), $data);
 					break;
@@ -118,7 +118,7 @@ class Request
 	 */
 	public function post( $params = [])
 	{
-		switch ($this->data_type) {
+		switch (self::$data_type) {
 			case 1: //原生
 				$data = $_POST;
 				break;
@@ -282,9 +282,9 @@ class Request
 	/**
 	 * 设置请求类型
 	 */
-	public function setDataType($type = 1)
+	public static function setDataType($type = 1)
 	{
-		$this->data_type = $type;
+		self::$data_type = $type;
 		return $this;
 	}
 
