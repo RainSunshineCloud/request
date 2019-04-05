@@ -285,7 +285,6 @@ class Request
 	public static function setDataType($type = 1)
 	{
 		self::$data_type = $type;
-		return $this;
 	}
 
 	/**
