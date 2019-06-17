@@ -24,8 +24,9 @@ class Request
 	 * @param  array  $data [description]
 	 * @return [type]       [description]
 	 */
-	public function data(array $data)
+	public function data(array $data,$params = [])
 	{
+		$data = $this->getData($data,$params);
 		return $this->validate($data);
 	}
 

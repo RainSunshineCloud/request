@@ -228,5 +228,32 @@ class Validate
 		throw new RequestException($message);
 	}
 
+	public function enum($value,$message,$other = [])
+	{
+		if (in_array($value,$other,true)) {
+			return $value;
+		}
+
+		throw new RequestException($message);
+	}
+
+	public function enumStr($value,$message,$other)
+	{
+		$value = $this->string($value,$message,[]);
+		return $this->enum($value,$message,$other);
+	}
+
+	public function enumInt($value,$message,$other)
+	{
+		$value = $this->int($value,$message,[]);
+		return $this->enum($value,$message,$other);
+	}
+
+	public function enumFloat($value,$message,$other)
+	{
+		$value = $this->float($value,$message,[]);
+		return $this->enum($value,$message,$other);
+	}
+
 }
 
